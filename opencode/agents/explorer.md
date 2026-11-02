@@ -1,51 +1,13 @@
 ---
 description: "Read-only code search with read, glob, grep, CodeGraph and read-only shell commands (rg, git status/diff/log/show/branch). Finds files, symbol definitions, call sites and call paths, and returns paths with line ranges and signatures. Cannot edit files or use the web."
 mode: subagent
-model: opencode-go/muse-spark-1.3-contributor
+model: your-model (none - low thinking recommended)
 steps: 10
 permissions:
-  - action: "*"
-    resource: "*"
-    effect: deny
-  - action: read
-    resource: "*"
-    effect: allow
-  - action: read
-    resource: "*.env"
-    effect: deny
-  - action: read
-    resource: "*.env.*"
-    effect: deny
-  - action: glob
-    resource: "*"
-    effect: allow
-  - action: grep
-    resource: "*"
-    effect: allow
-  - action: codegraph_*
-    resource: "*"
-    effect: allow
-  - action: shell
-    resource: "codegraph explore*"
-    effect: allow
-  - action: shell
-    resource: "rg*"
-    effect: allow
-  - action: shell
-    resource: "git status*"
-    effect: allow
-  - action: shell
-    resource: "git diff*"
-    effect: allow
-  - action: shell
-    resource: "git log*"
-    effect: allow
-  - action: shell
-    resource: "git show*"
-    effect: allow
-  - action: shell
-    resource: "git branch*"
-    effect: allow
+  - { action: edit, resource: "*", effect: deny }
+  - { action: question, resource: "*", effect: deny }
+  - { action: webfetch, resource: "*", effect: deny }
+  - { action: websearch, resource: "*", effect: deny }
 ---
 
 Locate the exact files, symbol definitions, and call sites requested.
